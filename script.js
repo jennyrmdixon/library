@@ -1,3 +1,7 @@
+let myLibrary = [];
+const bookList = document.querySelector('.bookList');
+
+
 function Book(title, author, pages, readstatus) {
   this.title = title;
   this.author = author;
@@ -10,29 +14,30 @@ function Book(title, author, pages, readstatus) {
   this.info = function() {
     console.log (this.title + " by " + this.author + ", " + this.pages + ", " + this.readstatus);
   }
+
 };
 
-//const theHobbit = new Book('The Hobbit', 'J.R.R Tolkein', '295', false)
-//theHobbit.info() // "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
-
-//const greatGatsby = new Book('The Great Gatsby', 'F Scott Fitzgerlad', '208', true)
-//greatGatsby.info() 
-
-//const slaughterhouseFive = new Book('Slaughterhouse-Five', 'Kurt Vonnegut', '288', true)
-//slaughterhouseFive.info() 
-
-
-let myLibrary = [];
+/*Deafult books*/
+const theHobbit = new Book('The Hobbit', 'J.R.R Tolkein', '295', false)
+const greatGatsby = new Book('The Great Gatsby', 'F Scott Fitzgerlad', '208', true)
+const slaughterhouseFive = new Book('Slaughterhouse-Five', 'Kurt Vonnegut', '288', true)
+myLibrary.push(theHobbit, greatGatsby, slaughterhouseFive);
 
 
 
 function displayBooks () {
 
-  for (const book of myLibrary) {
-  const bookList = document.querySelector('.bookList')
+  /*Replace with check to see if index exists */
 
+  while (bookList.lastElementChild) {
+    bookList.removeChild(bookList.lastElementChild);
+     }
+
+  for (const book of myLibrary) {
+  
   let bookCard = document.createElement('div');
   bookCard.classList.add('bookCard'); 
+  bookCard.setAttribute('data-array-index', myLibrary.indexOf(book));                              
   bookList.appendChild(bookCard);
   
   let bookHeading = document.createElement('h1');
@@ -51,14 +56,20 @@ function displayBooks () {
   bookInfoList.appendChild(bookListItem2);
 
   let bookListItem3 = document.createElement('li');
-  bookListItem3.textContent = book.readstatus
+  bookListItem3.textContent = book.readstatus;
   bookInfoList.appendChild(bookListItem3);
 
+  let deleteButton =  document.createElement('button');
+  deleteButton.setAttribute("class", "deleteButton");                              
+  deleteButton.textContent = "Delete Book";
+  bookCard.appendChild(deleteButton);
   }
 
 }
 
-//displayBooks()
+displayBooks()
+
+/*Revise so you don't have to define as many variables?*/
 
 const newBookFormBtn = document.querySelector('#newBook');
 newBookFormBtn.addEventListener('click', () => {
@@ -71,24 +82,25 @@ cancelBtn.addEventListener('click', () => {
 });
 
 const submitBtn = document.querySelector('button.submit');
-cancelBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', () => {
 let title = document.getElementById("title").value;
 let author = document.getElementById("author").value;
 let pages = document.getElementById("pages").value;
+let readstatus = document.getElementById("alreadyRead").checked;
 myLibrary.push(new Book(title, author, pages, readstatus));
 displayBooks()
- 
+});
+
+
+/*Needs work*/
+let deleteBtn = document.querySelector('button.submit');
+deleteBtn.addEventListener('click', (event) => {
+let currentBook = event.target.parentElement;
+console.log(currentBook);
+myLibrary.splice(currentBook.data-array-index,1);
+console.log(myLibrary);
+displayBooks();
 });
 
 
 
-
-// const btn = document.querySelector('#newBook');
-// btn.addEventListener('click', () => {
-//  let title = prompt("Book title", "");
-//  let author = prompt("Book author", "");
-//  let pages = prompt("Number of pages in book", "");
-//  let readstatus = confirm("Press OK if you have read the book, or cancel if you have not read the book.");
-//  myLibrary.push(new Book(title, author, pages, readstatus));
-//  displayBooks()
-// });

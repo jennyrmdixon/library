@@ -8,9 +8,13 @@ li {
 }
 
 button {
-    background-color: darkred;
+    background-color: darkblue;
     color:white;
     font-size: 1.2rem; 
+}
+
+.buttonArea {
+    margin-bottom: 10px;
 }
 
 #popupForm {
@@ -28,3 +32,8 @@ button {
     width: 300px;
  }
  
+ .deleteButton {
+    background-color: darkred;
+    color: white;
+    font-size: 1.2em;
+ }

@@ -28,6 +28,7 @@
       </div>
       <div>
           <label for="pages">
+            <!--Add number validation-->
             Number of Pages
           </label>
           <input type="text" id="pages" placeholder = "Number of Pages" name="pages" required>
@@ -35,13 +36,14 @@
       <fieldset for="readstatus">
         <legend>Have you read it?</legend>
       </label>
-        <input type="radio" id="yes" name="readstatus" value=true>
+        <input type="radio" id="alreadyRead" name="readstatus" value=true>
         <label for="yes">Yes</label>      
       <div>
-        <input type="radio" id="no" name="readstatus" value=false>
+        <input type="radio" id="notRead" name="readstatus" value=false>
         <label for="no">No</label>
       </div>  
       </fieldset>
+      <!--Update to submit button-->
       <button type="button" class="btn submit">Add New Book</button>
       <button type="button" class="btn cancel">Close</button>
     </form>
