@@ -5,15 +5,48 @@
 <title>Mini Library</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </head>
 <body>
-
-
-<div class="">
- <h1>This is a Heading</h1>
- <p>This is a paragraph.</p>
- <p>This is another paragraph.</p>
+<div class ="buttonArea">
+<button id="newBook">New Book</button>
+</div>
+<div id="popupForm">
+    <form action="/action_page.php" class="formContainer">
+      <h2>Enter New Book</h2>
+      <div>
+          <label for="title">
+            Book Title
+          </label>
+          <input type="text" id="title" placeholder="Book Title" name="title" required>
+      </div>
+      <div>
+          <label for="author">
+            Book Author
+          </label>
+          <input type="text" id="author" placeholder = "Book Author" name="author" required>
+      </div>
+      <div>
+          <label for="pages">
+            Number of Pages
+          </label>
+          <input type="text" id="pages" placeholder = "Number of Pages" name="pages" required>
+      </div>
+      <fieldset for="readstatus">
+        <legend>Have you read it?</legend>
+      </label>
+        <input type="radio" id="yes" name="readstatus" value=true>
+        <label for="yes">Yes</label>      
+      <div>
+        <input type="radio" id="no" name="readstatus" value=false>
+        <label for="no">No</label>
+      </div>  
+      </fieldset>
+      <button type="button" class="btn submit">Add New Book</button>
+      <button type="button" class="btn cancel">Close</button>
+    </form>
+    </div>
+<div class="bookList">
 </div>
 
 </body>
