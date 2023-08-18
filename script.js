@@ -1,5 +1,5 @@
 let myLibrary = [];
-const bookList = document.querySelector('.bookList');
+const bookList = document.querySelector('#bookList');
 
 
 function Book(title, author, pages, readstatus) {
@@ -62,6 +62,8 @@ function displayBooks () {
   let deleteButton =  document.createElement('button');
   deleteButton.setAttribute("class", "deleteButton");                              
   deleteButton.textContent = "Delete Book";
+  // deleteButton.setAttribute('onClick', deleteBook);        
+  deleteButton.setAttribute('data-array-index', myLibrary.indexOf(book));                                                    
   bookCard.appendChild(deleteButton);
   }
 
@@ -92,15 +94,16 @@ displayBooks()
 });
 
 
-/*Needs work*/
-let deleteBtn = document.querySelector('button.submit');
-deleteBtn.addEventListener('click', (event) => {
-let currentBook = event.target.parentElement;
-console.log(currentBook);
-myLibrary.splice(currentBook.data-array-index,1);
-console.log(myLibrary);
-displayBooks();
+const libraryContainer = document.getElementById('bookList');
+
+libraryContainer.addEventListener('click', function(event) {
+  if (event.target.classList.contains('deleteButton')) {
+    const deleteBtn = event.target;
+    const parentElement = deleteBtn.parentElement;
+    const index = parentElement.getAttribute('data-array-index');
+    
+    myLibrary.splice(index, 1);
+    displayBooks();
+  }
 });
-
-
 
