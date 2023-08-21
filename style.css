@@ -37,3 +37,7 @@ button {
     color: white;
     font-size: 1.2em;
  }
+
+ .readstatusButton {
+    margin-left: 15px;
+ }

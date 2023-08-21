@@ -62,9 +62,19 @@ function displayBooks () {
   let deleteButton =  document.createElement('button');
   deleteButton.setAttribute("class", "deleteButton");                              
   deleteButton.textContent = "Delete Book";
-  // deleteButton.setAttribute('onClick', deleteBook);        
-  deleteButton.setAttribute('data-array-index', myLibrary.indexOf(book));                                                    
   bookCard.appendChild(deleteButton);
+
+
+  let readstatusButton =  document.createElement('button');
+  readstatusButton.setAttribute("class", "readstatusButton"); 
+  if (book.readstatus === "Already read"){                         
+  readstatusButton.textContent = "Book Not Read";
+} 
+else {
+  readstatusButton.textContent = "Book Read";
+}
+  bookCard.appendChild(readstatusButton);
+
   }
 
 }
@@ -105,5 +115,28 @@ libraryContainer.addEventListener('click', function(event) {
     myLibrary.splice(index, 1);
     displayBooks();
   }
+
+  if (event.target.classList.contains('readstatusButton')) {
+    const readstatusBtn = event.target;
+    const parentElement = readstatusBtn.parentElement;
+    const index = parentElement.getAttribute('data-array-index');
+    const currentBook = myLibrary[index];
+    console.log(currentBook);
+    const oldReadStatus = currentBook.readstatus;
+    if (oldReadStatus === "Already read") {
+      currentBook.readstatus = "Not read yet";
+      displayBooks();
+    }
+    else {
+      currentBook.readstatus = "Already read";
+      displayBooks();
+    }
+  }
+  
 });
+
+
+
+
+
 
