@@ -13,14 +13,14 @@ function Book(title, author, pages, readstatus) {
 
   this.info = function() {
     console.log (this.title + " by " + this.author + ", " + this.pages + ", " + this.readstatus);
-  }
+  };
 
-};
+}
 
 /*Deafult books*/
-const theHobbit = new Book('The Hobbit', 'J.R.R Tolkein', '295', false)
-const greatGatsby = new Book('The Great Gatsby', 'F Scott Fitzgerlad', '208', true)
-const slaughterhouseFive = new Book('Slaughterhouse-Five', 'Kurt Vonnegut', '288', true)
+const theHobbit = new Book('The Hobbit', 'J.R.R Tolkein', '295', false);
+const greatGatsby = new Book('The Great Gatsby', 'F Scott Fitzgerlad', '208', true);
+const slaughterhouseFive = new Book('Slaughterhouse-Five', 'Kurt Vonnegut', '288', true);
 myLibrary.push(theHobbit, greatGatsby, slaughterhouseFive);
 
 
@@ -79,7 +79,7 @@ else {
 
 }
 
-displayBooks()
+displayBooks();
 
 /*Revise so you don't have to define as many variables?*/
 
@@ -94,13 +94,27 @@ cancelBtn.addEventListener('click', () => {
 });
 
 const submitBtn = document.querySelector('button.submit');
-submitBtn.addEventListener('click', () => {
-let title = document.getElementById("title").value;
-let author = document.getElementById("author").value;
-let pages = document.getElementById("pages").value;
-let readstatus = document.getElementById("alreadyRead").checked;
-myLibrary.push(new Book(title, author, pages, readstatus));
-displayBooks()
+const form = document.querySelector('form');
+
+submitBtn.addEventListener('click', (event) => {
+  if (form.checkValidity()) {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let readstatus = document.getElementById("alreadyRead").checked;
+    
+    myLibrary.push(new Book(title, author, pages, readstatus));
+    displayBooks();
+  } else {
+    alert("Please fill out all feilds for the new book.");
+  }
+  
+  event.preventDefault();
+});
+
+// Prevent default form submission behavior
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
 });
 
 
@@ -134,6 +148,8 @@ libraryContainer.addEventListener('click', function(event) {
   }
   
 });
+
+
 
 
 

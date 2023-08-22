@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<head>
 <html lang="en">
+<head>
 <meta charset="UTF-8">
 <title>Mini Library</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,39 +12,36 @@
 <button id="newBook">New Book</button>
 </div>
 <div id="popupForm">
-    <form action="/action_page.php" class="formContainer">
+    <form action="example.com/path" method="post" class="formcontainer">
       <h2>Enter New Book</h2>
       <div>
           <label for="title">
             Book Title
           </label>
-          <input type="text" id="title" placeholder="Book Title" name="title" required>
+          <input type="text" id="title" placeholder="Book Title" name="title" required />
       </div>
       <div>
           <label for="author">
             Book Author
           </label>
-          <input type="text" id="author" placeholder = "Book Author" name="author" required>
+          <input type="text" id="author" placeholder = "Book Author" name="author" required />
       </div>
       <div>
           <label for="pages">
-            <!--Add number validation-->
             Number of Pages
           </label>
-          <input type="text" id="pages" placeholder = "Number of Pages" name="pages" required>
+          <input type="number" id="pages" placeholder = "Number of Pages" name="pages" required />
       </div>
-      <fieldset for="readstatus">
+      <fieldset>
         <legend>Have you read it?</legend>
-      </label>
-        <input type="radio" id="alreadyRead" name="readstatus" value=true>
-        <label for="yes">Yes</label>      
+        <input type="radio" id="alreadyRead" name="readstatus" value=true checked="checked"/>
+        <label for="alreadyRead">Yes</label>      
       <div>
-        <input type="radio" id="notRead" name="readstatus" value=false>
-        <label for="no">No</label>
+        <input type="radio" id="notRead" name="readstatus" value=false />
+        <label for="notRead">No</label>
       </div>  
       </fieldset>
-      <!--Update to submit button-->
-      <button type="button" class="btn submit">Add New Book</button>
+      <button type="submit" class="btn submit">Add New Book</button>
       <button type="button" class="btn cancel">Close</button>
     </form>
     </div>
