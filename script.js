@@ -1,6 +1,5 @@
+/*Setup for library array*/
 let myLibrary = [];
-const bookList = document.querySelector('#bookList');
-
 
 function Book(title, author, pages, readstatus) {
   this.title = title;
@@ -14,7 +13,6 @@ function Book(title, author, pages, readstatus) {
   this.info = function() {
     console.log (this.title + " by " + this.author + ", " + this.pages + ", " + this.readstatus);
   };
-
 }
 
 /*Deafult books*/
@@ -24,39 +22,35 @@ const slaughterhouseFive = new Book('Slaughterhouse-Five', 'Kurt Vonnegut', '288
 myLibrary.push(theHobbit, greatGatsby, slaughterhouseFive);
 
 
+/*Global variables*/
+const bookList = document.querySelector('#bookList');
+const notReadButtonText = "Update Status: Read";
+const readButtonText = "Update Status: Not Read Yet";
 
-function displayBooks () {
-
-  /*Replace with check to see if index exists */
-
-  while (bookList.lastElementChild) {
-    bookList.removeChild(bookList.lastElementChild);
-     }
-
-  for (const book of myLibrary) {
-  
+/*Core functions*/
+function displayNewBook (newBook) {
   let bookCard = document.createElement('div');
   bookCard.classList.add('bookCard'); 
-  bookCard.setAttribute('data-array-index', myLibrary.indexOf(book));                              
+  bookCard.setAttribute('data-array-index', myLibrary.indexOf(newBook));                              
   bookList.appendChild(bookCard);
   
   let bookHeading = document.createElement('h1');
-  bookHeading.textContent = book.title;
+  bookHeading.textContent = newBook.title;
   bookCard.appendChild(bookHeading);
 
   let bookInfoList = document.createElement('ul');
   bookCard.appendChild(bookInfoList);
 
   let bookListItem1 = document.createElement('li');
-  bookListItem1.textContent = "Author: " + book.author;
+  bookListItem1.textContent = "Author: " + newBook.author;
   bookInfoList.appendChild(bookListItem1);
 
   let bookListItem2 = document.createElement('li');
-  bookListItem2.textContent = "Pages: " + book.pages;
+  bookListItem2.textContent = "Pages: " + newBook.pages;
   bookInfoList.appendChild(bookListItem2);
 
   let bookListItem3 = document.createElement('li');
-  bookListItem3.textContent = book.readstatus;
+  bookListItem3.textContent = newBook.readstatus;
   bookInfoList.appendChild(bookListItem3);
 
   let deleteButton =  document.createElement('button');
@@ -67,21 +61,26 @@ function displayBooks () {
 
   let readstatusButton =  document.createElement('button');
   readstatusButton.setAttribute("class", "readstatusButton"); 
-  if (book.readstatus === "Already read"){                         
-  readstatusButton.textContent = "Book Not Read";
+  if (newBook.readstatus === "Already read"){                         
+  readstatusButton.textContent = readButtonText;
 } 
 else {
-  readstatusButton.textContent = "Book Read";
+  readstatusButton.textContent = notReadButtonText;
 }
   bookCard.appendChild(readstatusButton);
 
   }
 
+  function displayAllBooks () {
+    for (const book of myLibrary) {
+    displayNewBook (book)
+  }
 }
+  
 
-displayBooks();
+displayAllBooks();
 
-/*Revise so you don't have to define as many variables?*/
+/*Button Functionality*/
 
 const newBookFormBtn = document.querySelector('#newBook');
 newBookFormBtn.addEventListener('click', () => {
@@ -95,7 +94,6 @@ cancelBtn.addEventListener('click', () => {
 
 const submitBtn = document.querySelector('button.submit');
 const form = document.querySelector('form');
-
 submitBtn.addEventListener('click', (event) => {
   if (form.checkValidity()) {
     let title = document.getElementById("title").value;
@@ -104,7 +102,7 @@ submitBtn.addEventListener('click', (event) => {
     let readstatus = document.getElementById("alreadyRead").checked;
     
     myLibrary.push(new Book(title, author, pages, readstatus));
-    displayBooks();
+    displayNewBook(myLibrary[myLibrary.length - 1]);
   } else {
     alert("Please fill out all feilds for the new book.");
   }
@@ -117,7 +115,6 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
 });
 
-
 const libraryContainer = document.getElementById('bookList');
 
 libraryContainer.addEventListener('click', function(event) {
@@ -127,7 +124,7 @@ libraryContainer.addEventListener('click', function(event) {
     const index = parentElement.getAttribute('data-array-index');
     
     myLibrary.splice(index, 1);
-    displayBooks();
+    parentElement.remove();
   }
 
   if (event.target.classList.contains('readstatusButton')) {
@@ -139,20 +136,74 @@ libraryContainer.addEventListener('click', function(event) {
     const oldReadStatus = currentBook.readstatus;
     if (oldReadStatus === "Already read") {
       currentBook.readstatus = "Not read yet";
-      displayBooks();
+      readstatusBtn.textContent = notReadButtonText;
+      parentElement.querySelector('.readstatus').textContent = currentBook.readstatus;
     }
     else {
       currentBook.readstatus = "Already read";
-      displayBooks();
+      readstatusBtn.textContent = readButtonText;
+      parentElement.querySelector('.readstatus').textContent = currentBook.readstatus;
     }
-  }
+    }
+  })
+
+
+
+// Catch-all function which refreshes entire page based on myLibrary array
+// Kept for reference only 
+
+
+// function displayBooks () {
+
+
+//   while (bookList.lastElementChild) {
+//     bookList.removeChild(bookList.lastElementChild);
+//      }
+
+//   for (const book of myLibrary) {
   
-});
+//   let bookCard = document.createElement('div');
+//   bookCard.classList.add('bookCard'); 
+//   bookCard.setAttribute('data-array-index', myLibrary.indexOf(book));                              
+//   bookList.appendChild(bookCard);
+  
+//   let bookHeading = document.createElement('h1');
+//   bookHeading.textContent = book.title;
+//   bookCard.appendChild(bookHeading);
+
+//   let bookInfoList = document.createElement('ul');
+//   bookCard.appendChild(bookInfoList);
+
+//   let bookListItem1 = document.createElement('li');
+//   bookListItem1.textContent = "Author: " + book.author;
+//   bookInfoList.appendChild(bookListItem1);
+
+//   let bookListItem2 = document.createElement('li');
+//   bookListItem2.textContent = "Pages: " + book.pages;
+//   bookInfoList.appendChild(bookListItem2);
+
+//   let bookListItem3 = document.createElement('li');
+//   bookListItem3.textContent = book.readstatus;
+//   bookListItem3.setAttribute("class", "readstatus"); 
+//   bookInfoList.appendChild(bookListItem3);
+
+//   let deleteButton =  document.createElement('button');
+//   deleteButton.setAttribute("class", "deleteButton");                              
+//   deleteButton.textContent = "Delete Book";
+//   bookCard.appendChild(deleteButton);
 
 
+//   let readstatusButton =  document.createElement('button');
+//   readstatusButton.setAttribute("class", "readstatusButton"); 
+//   if (book.readstatus === "Already read"){                         
+//   readstatusButton.textContent = "Update Status: Not Read";
+// } 
+// else {
+//   readstatusButton.textContent = "Update Status: Read";
+// }
+//   bookCard.appendChild(readstatusButton);
 
-
-
+//   }
 
 
 
