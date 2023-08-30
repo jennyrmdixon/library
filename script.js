@@ -34,7 +34,7 @@ function displayNewBook (newBook) {
   bookCard.setAttribute('data-array-index', myLibrary.indexOf(newBook));                              
   bookList.appendChild(bookCard);
   
-  let bookHeading = document.createElement('h1');
+  let bookHeading = document.createElement('h2');
   bookHeading.textContent = newBook.title;
   bookCard.appendChild(bookHeading);
 
@@ -82,15 +82,11 @@ displayAllBooks();
 
 /*Button Functionality*/
 
-const newBookFormBtn = document.querySelector('#newBook');
-newBookFormBtn.addEventListener('click', () => {
-  document.getElementById("popupForm").style.display = "block";
-});
 
-const cancelBtn = document.querySelector('button.cancel');
-cancelBtn.addEventListener('click', () => {
-  document.getElementById("popupForm").style.display = "none";
-});
+// const cancelBtn = document.querySelector('button.cancel');
+// cancelBtn.addEventListener('click', () => {
+//   document.getElementById("newBookForm").style.display = "none";
+// });
 
 const submitBtn = document.querySelector('button.submit');
 const form = document.querySelector('form');
@@ -132,20 +128,20 @@ libraryContainer.addEventListener('click', function(event) {
     const parentElement = readstatusBtn.parentElement;
     const index = parentElement.getAttribute('data-array-index');
     const currentBook = myLibrary[index];
-    console.log(currentBook);
     const oldReadStatus = currentBook.readstatus;
+
     if (oldReadStatus === "Already read") {
       currentBook.readstatus = "Not read yet";
+      parentElement.querySelector('ul li:last-child').textContent = currentBook.readstatus;
       readstatusBtn.textContent = notReadButtonText;
-      parentElement.querySelector('.readstatus').textContent = currentBook.readstatus;
     }
     else {
       currentBook.readstatus = "Already read";
+      parentElement.querySelector('ul li:last-child').textContent = currentBook.readstatus;
       readstatusBtn.textContent = readButtonText;
-      parentElement.querySelector('.readstatus').textContent = currentBook.readstatus;
     }
     }
-  })
+  });
 
 
 

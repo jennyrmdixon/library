@@ -8,44 +8,44 @@
 <script src="script.js" defer></script>
 </head>
 <body>
-<div class ="buttonArea">
-<button id="newBook">New Book</button>
-</div>
-<div id="popupForm">
-    <form action="example.com/path" method="post" class="formcontainer">
-      <h2>Enter New Book</h2>
-      <div>
-          <label for="title">
-            Book Title
-          </label>
-          <input type="text" id="title" placeholder="Book Title" name="title" required />
+<div id ="wrapper">
+  <div id="newBookForm">
+      <form action="example.com/path" method="post" class="formcontainer">
+        <h3>Enter New Book</h3>
+        <div>
+            <label for="title">
+              Book Title
+            </label>
+            <input type="text" id="title" placeholder="Book Title" name="title" required />
+        </div>
+        <div>
+            <label for="author">
+              Book Author
+            </label>
+            <input type="text" id="author" placeholder = "Book Author" name="author" required />
+        </div>
+        <div>
+            <label for="pages">
+              Number of Pages
+            </label>
+            <input type="number" id="pages" placeholder = "Number of Pages" name="pages" required />
+        </div>
+        <div>
+          <fieldset>
+            <legend>Have you read it?</legend>
+            <input type="radio" id="alreadyRead" name="readstatus" value=true checked="checked"/>
+            <label for="alreadyRead">Yes</label>
+          <div>
+            <input type="radio" id="notRead" name="readstatus" value=false />
+            <label for="notRead">No</label>
+          </div>
+          </fieldset>
+        </div>
+        <button type="submit" class="btn submit">Add New Book</button>
+      </form>
       </div>
-      <div>
-          <label for="author">
-            Book Author
-          </label>
-          <input type="text" id="author" placeholder = "Book Author" name="author" required />
-      </div>
-      <div>
-          <label for="pages">
-            Number of Pages
-          </label>
-          <input type="number" id="pages" placeholder = "Number of Pages" name="pages" required />
-      </div>
-      <fieldset>
-        <legend>Have you read it?</legend>
-        <input type="radio" id="alreadyRead" name="readstatus" value=true checked="checked"/>
-        <label for="alreadyRead">Yes</label>      
-      <div>
-        <input type="radio" id="notRead" name="readstatus" value=false />
-        <label for="notRead">No</label>
-      </div>  
-      </fieldset>
-      <button type="submit" class="btn submit">Add New Book</button>
-      <button type="button" class="btn cancel">Close</button>
-    </form>
-    </div>
-<div id="bookList">
+  <div id="bookList">
+  </div>
 </div>
 
 </body>
