@@ -1,5 +1,4 @@
 /*Start CSS Reset Code*/
-
 /* Box sizing rules */
 *,
 *::before,
@@ -60,13 +59,10 @@ textarea,
 select {
     font: inherit;
 }
-
-
 /*End Reset Code*/
 
 
-
-
+/*Full Page*/
 * {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.1rem;
@@ -76,15 +72,6 @@ select {
     grid-template-columns: 300px 600px;
     display: grid;
     gap: 15px;
-}
-
-.bookCard {
-    border-bottom: 3px solid rgb(230, 230, 230);
-    padding: 10px 10px 35px 10px;
-}
-
-li {
-    font-size: 1.5rem;
 }
 
 button {
@@ -100,38 +87,36 @@ button:hover {
 
 }
 
-.buttonArea {
-    margin-bottom: 10px;
-}
-
+/*Form*/
 #newBookForm {
     margin-bottom: 10px;
     background-color: rgb(230, 230, 230);
-    padding: 15px;
+    padding: 15px 15px 30px 30px;
+    height:fit-content;
+    position: sticky;
+    top: 0;
+
 }
 
 #newBookForm form {
    width: 225px;
 }
 
-
-#newBookForm form button {
-    width: 100%;
+ ::placeholder {
+    color: grey;
  }
-
  #newBookForm input {
    padding: 10px; 
-   color: grey;
+   color: black;
    border: 0;
  }
 
- #newBookForm input[type=text], #newBookForm input[type=number] {
+ #newBookForm input[type=text], #newBookForm input[type=number], #newBookForm button {
     width: 100%;
   }
  
  #newBookForm form div {
     margin: 15px 0; 
-    /* width: 200px; */
  }
  
 
@@ -141,6 +126,26 @@ button:hover {
     width: 100%;
  }
 
+  p#validityFailMessage {
+    visibility: hidden;
+    margin-top: 5px;
+ } 
+
+ p.activeMessage {
+    visibility: inherit!important;
+    color: red;
+ }
+
+
+/*Book List*/
+.bookCard {
+    border-bottom: 3px solid rgb(230, 230, 230);
+    padding: 10px 10px 35px 10px;
+}
+
+li {
+    font-size: 1.5rem;
+}
  
  .deleteButton {
     background-color: black;
