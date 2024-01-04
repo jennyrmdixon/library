@@ -1,15 +1,18 @@
 /*Setup for library array*/
 let myLibrary = [];
 
-function Book(title, author, pages, readstatus) {
-  this.title = title;
+class Book {
+  constructor (title, author, pages, readstatus) {
+ this.title = title;
   this.author = author;
   this.pages = pages + " pages";
   if (readstatus) {
     this.readstatus = "Already read";
   } else this.readstatus = "Not read yet";
 
-  this.info = function () {
+  }
+
+  info () {
     console.log(
       this.title +
         " by " +
@@ -18,7 +21,7 @@ function Book(title, author, pages, readstatus) {
         this.pages +
         ", " +
         this.readstatus
-    );
+    )
   };
 }
 
@@ -42,6 +45,7 @@ myLibrary.push(theHobbit, greatGatsby, slaughterhouseFive);
 const bookList = document.querySelector("#bookList");
 const notReadButtonText = "Update Status: Read";
 const readButtonText = "Update Status: Not Read Yet";
+
 
 /*Core functions*/
 function displayNewBook(newBook) {
